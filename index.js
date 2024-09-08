@@ -46,12 +46,12 @@ async function run() {
 
 
     // bookings start
-  //   app.post('/bookings', async(req, res)=>{
-  //     const bookingList = req.body;
-  //     // console.log(bookingList);
-  //     const result = await bookingCollection.insertOne(bookingList);
-  //     res.send(result);
-  // })
+    app.post('/bookings', async(req, res)=>{
+      const bookingList = req.body;
+      // console.log(bookingList);
+      const result = await bookingCollection.insertOne(bookingList);
+      res.send(result);
+  })
 
   // app.get('/bookings', async(req, res)=>{
   //   const cursor = bookingCollection.find();
