@@ -60,12 +60,12 @@ async function run() {
   //   res.send(result);
   // })
 
-  // app.get('/bookings/:email', async(req, res)=>{
-  //   console.log(req.params.email);
-  //   const result = await bookingCollection.find({email: req.params.email}).toArray();
-  //   console.log(result);
-  //   res.send(result);
-  // })
+  app.get('/bookings/:email', async(req, res)=>{
+    console.log(req.params.email);
+    const result = await bookingCollection.find({email: req.params.email}).toArray();
+    console.log(result);
+    res.send(result);
+  })
 
   // app.delete('/bookings/:id', async(req, res)=>{
   //   const id = req.params.id;
