@@ -81,13 +81,13 @@ async function run() {
     res.send(result);
   })
 
-  // app.get('/bookings/:id', async(req, res)=>{
-  //   const id = req.params.id;
-  //   const cursor = {_id: new ObjectId(id)};
-  //   const result = await bookingCollection.findOne(cursor);
-  //   console.log("rest", result);
-  //   res.send(result);
-  // })
+  app.get('/bookings/:id', async(req, res)=>{
+    const id = req.params.id;
+    const cursor = {_id: new ObjectId(id)};
+    const result = await bookingCollection.findOne(cursor);
+    console.log("rest", result);
+    res.send(result);
+  })
 
   // app.put('/bookings/:id', async(req, res)=>{
   //   const id = req.params.id;
