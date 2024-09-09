@@ -60,6 +60,13 @@ async function run() {
   //   res.send(result);
   // })
 
+
+  app.get('/bookings', async(req, res)=>{
+    const cursor = roomsCollection.find();
+    const result = await cursor.toArray();
+    res.send(result);
+})
+
   app.get('/bookings/:email', async(req, res)=>{
     console.log(req.params.email);
     const result = await bookingCollection.find({email: req.params.email}).toArray();
@@ -67,12 +74,36 @@ async function run() {
     res.send(result);
   })
 
-  // app.delete('/bookings/:id', async(req, res)=>{
+  app.delete('/bookings/:id', async(req, res)=>{
+    const id = req.params.id;
+    const query = {_id: new ObjectId(id)};
+    const result = await bookingCollection.deleteOne(query);
+    res.send(result);
+  })
+
+  // app.get('/bookings/:id', async(req, res)=>{
   //   const id = req.params.id;
-  //   const query = {_id: new ObjectId(id)};
-  //   const result = await bookingCollection.deleteOne(query);
+  //   const cursor = {_id: new ObjectId(id)};
+  //   const result = await bookingCollection.findOne(cursor);
+  //   console.log("rest", result);
   //   res.send(result);
   // })
+
+  // app.put('/bookings/:id', async(req, res)=>{
+  //   const id = req.params.id;
+  //   const filter = {_id: new ObjectId(id)};
+  //   const options = {upsert: true};
+  //   const updateSpot = req.body;
+  //   const bookings = {
+  //     $set:{
+  //       date: updateSpot?.startDate
+  //     }
+  //   }
+    const result = await bookingCollection.updateOne(filter, bookings, options);
+    console.log(result);
+    res.send(result)
+  })
+
 
 
     // Send a ping to confirm a successful connection
