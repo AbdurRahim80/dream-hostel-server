@@ -89,16 +89,16 @@ async function run() {
     res.send(result);
   })
 
-  // app.put('/bookings/:id', async(req, res)=>{
-  //   const id = req.params.id;
-  //   const filter = {_id: new ObjectId(id)};
-  //   const options = {upsert: true};
-  //   const updateSpot = req.body;
-  //   const bookings = {
-  //     $set:{
-  //       date: updateSpot?.startDate
-  //     }
-  //   }
+  app.put('/bookings/:id', async(req, res)=>{
+    const id = req.params.id;
+    const filter = {_id: new ObjectId(id)};
+    const options = {upsert: true};
+    const updateSpot = req.body;
+    const bookings = {
+      $set:{
+        date: updateSpot?.startDate
+      }
+    }
     const result = await bookingCollection.updateOne(filter, bookings, options);
     console.log(result);
     res.send(result)
