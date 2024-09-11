@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const jwt = require('jsonwebtoken');
 require('dotenv').config()
 const app = express();
 const port = process.env.PORT || 5000;
@@ -26,10 +27,17 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
+    // await client.connect();
 
     const roomsCollection = client.db('dreamHostel').collection('hostel');
     const bookingCollection = client.db('bookingCollection').collection('bookings');
+
+    // auth
+    app.post('/jwt', (req, res)=>{
+      const user = req.body;
+      console.log(user);
+      res.send();
+    })
 
     app.get('/rooms', async(req, res)=>{
         const cursor = roomsCollection.find();
@@ -107,8 +115,8 @@ async function run() {
 
 
     // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+    // await client.db("admin").command({ ping: 1 });
+    // console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } finally {
     // Ensures that the client will close when you finish/error
     // await client.close();
